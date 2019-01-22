@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Assessment3.Models.Priyanka_New_Customer_Registrations>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_myLayout.cshtml";
+}
+
+<h5>Wellcome : @Session["User_Name"].ToString()</h5>
+<h4>Customer List</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            Action
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("DeActivate", "", new { id = item.Customer_ID })
+            </td>
+        </tr>
+    }
+
+</table>
+

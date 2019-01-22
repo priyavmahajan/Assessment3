@@ -1,0 +1,53 @@
+﻿@model Assessment3.Models.Priyanka_New_Customer_Registrations
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_myLayout.cshtml";
+}
+
+
+<h4>Wellcome : @Session["User_Name"].ToString()</h4>
+
+<div>
+    <h4>Your Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Confirm_Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Confirm_Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+
+    
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Customer_ID })    |   @Html.ActionLink("Add More Details", "Index")   |   @Html.ActionLink("Delete", "Delete", new { id = Model.Customer_ID })
+</div>
