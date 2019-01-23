@@ -140,6 +140,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminLogin.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminLogin.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminLogin.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminLogin.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminLogin.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminLogin.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\NewCustomerRegistration.Context.cs">
       <AutoGen>True</AutoGen>
@@ -156,8 +171,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NewCustomerRegistration.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Priyanka_Admin.cs">
+      <DependentUpon>AdminLogin.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Priyanka_New_Customer_Registrations.cs">
-      <DependentUpon>NewCustomerRegistration.tt</DependentUpon>
+      <DependentUpon>AdminLogin.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -170,6 +188,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\AdminLogin.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AdminLogin.edmx</DependentUpon>
+      <LastGenOutput>AdminLogin.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\AdminLogin.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AdminLogin.edmx</DependentUpon>
+      <LastGenOutput>AdminLogin.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\NewCustomerRegistration.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NewCustomerRegistration.Context.cs</LastGenOutput>
@@ -188,6 +216,13 @@
     </EntityDeploy>
     <Content Include="Models\NewCustomerRegistration.edmx.diagram">
       <DependentUpon>NewCustomerRegistration.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\AdminLogin.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AdminLogin.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\AdminLogin.edmx.diagram">
+      <DependentUpon>AdminLogin.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

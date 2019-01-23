@@ -12,13 +12,10 @@ namespace Assessment3.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Priyanka_New_Customer_Registrations
+    public partial class Priyanka_Admin
     {
-        public int Customer_ID { get; set; }
-        public string User_Name { get; set; }
+        public int UserId { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
-        public string Confirm_Password { get; set; }
-        public string Email { get; set; }
-        public string status { get; set; }
     }
 }

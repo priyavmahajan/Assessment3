@@ -13,7 +13,9 @@ namespace Assessment3.Controllers
 {
     public class LoginController : Controller
     {
+        public bool IsActive { get; set; }
         private CDACEntities db = new CDACEntities();
+        private CDACEntities1 db1 = new CDACEntities1();
         // GET: Login/Create
         public ActionResult Create()
         {
@@ -51,14 +53,14 @@ namespace Assessment3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogIn(Login reg)//Login action implementation
         {
-            var user = db.Priyanka_New_Customer_Registrations.Single(u => u.User_Name == reg.Username);
-            if (user.IsActive)
-            {
-                ModelState.AddModelError("", "This account has been disabled");
-                return View(reg);
-            }
-            else if (!user.IsActive)
-            {
+            //var user = db.Priyanka_New_Customer_Registrations.Single(u => u.User_Name == reg.Username);
+            //if (user.IsActive)
+            //{
+            //    ModelState.AddModelError("", "This account has been disabled");
+            //    return View(reg);
+            //}
+            //else if (!user.IsActive)
+            //{
                 if (ModelState.IsValid)
                 {
                     var details = (from userlist in db.Priyanka_New_Customer_Registrations
@@ -70,16 +72,25 @@ namespace Assessment3.Controllers
                                    }).ToList();
                     if (details.FirstOrDefault() != null)
                     {
+
+                    if (!IsActive == true)
+                    {
                         Session["Customer_ID"] = details.FirstOrDefault().Customer_ID;
                         Session["User_Name"] = details.FirstOrDefault().User_Name;
                         return RedirectToAction("Details/" + Session["Customer_ID"], "Priyanka_New_Customer_Registrations");
                     }
+                    else
+                    {
+                        ModelState.AddModelError("", "This account has been disabled");
+                           return View(reg);
+                    }
+                }
                 }
                 else
                 {
                     ModelState.AddModelError("", "Invalid credentials");
                 }
-           }
+          // }
             return View(reg);
         }
         [HttpPost]
@@ -100,23 +111,23 @@ namespace Assessment3.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AdminLogin(Login reg)      //Admin Login  Action
+        public ActionResult AdminLogin(Priyanka_Admin reg)      //Admin Login  Action
         {
             try                                   //handling exception
             {
                 if (ModelState.IsValid)
                 {
-                    var details = (from userlist in db.Priyanka_New_Customer_Registrations                       // to cheack user name password validation
-                                   where userlist.User_Name == reg.Username && userlist.Password == reg.Password
+                    var details = (from userlist in db1.Priyanka_Admin                      // to cheack user name password validation
+                                   where userlist.Username == reg.Username && userlist.Password == reg.Password
                                    select new
                                    {
-                                       userlist.Customer_ID,
-                                       userlist.User_Name,
+                                       userlist.UserId,
+                                       userlist.Username,
                                    }).ToList();
-                    if (details.FirstOrDefault() != null)
+                  if (details.FirstOrDefault() != null)
                     {
-                        Session["Customer_ID"] = details.FirstOrDefault().Customer_ID;
-                        Session["User_Name"] = details.FirstOrDefault().User_Name;
+                        Session["UserId"] = details.FirstOrDefault().UserId;
+                        Session["Username"] = details.FirstOrDefault().Username;
                         return RedirectToAction("List");
                     }
                 }
