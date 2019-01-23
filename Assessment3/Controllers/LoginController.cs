@@ -57,7 +57,7 @@ namespace Assessment3.Controllers
                 ModelState.AddModelError("", "This account has been disabled");
                 return View(reg);
             }
-            else if (user.IsActive)
+            else if (!user.IsActive)
             {
                 if (ModelState.IsValid)
                 {
