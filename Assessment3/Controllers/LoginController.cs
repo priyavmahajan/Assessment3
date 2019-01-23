@@ -13,7 +13,7 @@ namespace Assessment3.Controllers
 {
     public class LoginController : Controller
     {
-        public bool IsActive { get; set; }
+        public bool status { get; set; }
         private CDACEntities db = new CDACEntities();
         private CDACEntities1 db1 = new CDACEntities1();
         // GET: Login/Create
@@ -73,7 +73,7 @@ namespace Assessment3.Controllers
                     if (details.FirstOrDefault() != null)
                     {
 
-                    if (!IsActive == true)
+                    if (!status == true)
                     {
                         Session["Customer_ID"] = details.FirstOrDefault().Customer_ID;
                         Session["User_Name"] = details.FirstOrDefault().User_Name;
@@ -138,6 +138,39 @@ namespace Assessment3.Controllers
             }
             return View(reg);
         }
+
+        // GET: Logins/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+          //var login = db.Priyanka_New_Customer_Registrations.Find(id);
+           Login login = db.Logins.Find(id);
+            if (login == null)
+            {
+                return HttpNotFound();
+            }
+            return View(login);
+        }
+
+        // POST: Logins/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "UserId,Username,Password")] Login login)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(login).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("List");
+            }
+            return View(login);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

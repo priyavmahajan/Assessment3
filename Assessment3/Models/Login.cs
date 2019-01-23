@@ -19,7 +19,7 @@ namespace Assessment3.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-        public bool IsActive { get; set; } // To set Account state by admin
-
+      //  public bool IsActive { get; set; } // To set Account state by admin
+        public bool status { get; set; }
     }
 }
